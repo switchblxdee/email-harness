@@ -1,0 +1,65 @@
+# Скопируй в config.toml и поправь. Пароль НЕ пиши сюда — задай переменной окружения:
+#   export MAIL_PASSWORD='...'
+
+[imap]
+host = "imap.example.com"
+port = 993
+security = "ssl"              # ssl | starttls | none
+username = "egor@example.com"
+password_env = "MAIL_PASSWORD"
+# auth = "xoauth2"            # для Office 365 / Gmail: вместо password_env задай token_env = "MAIL_TOKEN"
+mailbox = "INBOX"
+# sent_folder = "Отправленные" # класть копии автоответов сюда (имена папок: python -m mail_harness folders)
+
+[smtp]
+host = "smtp.example.com"
+port = 587
+security = "starttls"         # 587 -> starttls, 465 -> ssl
+# username / password_env по умолчанию берутся из [imap]
+from_name = "Егор Иванович"
+# from_address = "egor@example.com"   # по умолчанию = username
+# local_hostname = "mypc.corp.ru"     # имя для EHLO; по умолчанию имя компьютера (без медленного DNS-запроса)
+# keepalive = 120                     # сек держать SMTP-соединение между письмами; 0 — новое на каждое
+
+[safety]
+my_addresses = []             # доп. адреса/алиасы, которые считать «мной»
+allowed_domains = []          # например ["example.com"] — отвечать только коллегам; пусто = всем
+blocked_senders = []
+skip_automated = true         # не показывать агенту рассылки, автоответы, NDR
+one_reply_per_thread = true   # максимум один автоответ на ветку переписки
+max_replies_per_sender_per_hour = 3
+max_replies_per_hour = 30
+
+[harness]
+dry_run = true                # сначала гоняй так: ответы пишутся в data/dry_run/*.eml
+poll_interval = 60            # секунд между проверками ящика
+start_from = "now"            # now — старые письма не трогать; all — обработать весь ящик
+data_dir = "data"
+state_db = "state.sqlite3"
+max_message_mb = 25
+max_attempts = 3
+
+[backlog]
+author_name = "Имя Фамилия"         # автор задач, которые вы создаёте сами (через чат)
+notify_in_progress = true      # письмо автору, когда задачу взяли «В работу» (один раз на задачу)
+notify_delay = 10              # секунд до отправки — чтобы «Отменить» успело отменить и письмо
+# notify_template = "Здравствуйте!\n\n{owner} взял Вашу задачу «{title}» в работу.\n\nСообщение создано автоматически."
+cleanup_done = "archive"       # в 00:00 выполненные: archive — в data/archive/, delete — удалить, off — не трогать
+
+[agent]
+class = "mail_harness.agents.backlog:BacklogAgent"
+
+[agent.options]
+owner = "Егор Иванович"
+extensions = [".xlsx", ".xlsm", ".xls", ".csv"]
+backlog_dir = "backlog"
+only_direct = true            # отвечать, только если я в «Кому», а не в копии
+reply_all = false
+# move_to = "Бэклог"          # переместить письмо в папку после обработки
+
+# Чат с ассистентом в бэклоге (нужны langchain-openai и OPENROUTER_API_KEY):
+# [chat]
+# class = "examples.chat_agent:ChatAgent"
+# [chat.options]
+# owner = "Егор Иванович"
+# model = "deepseek/deepseek-v4-flash"

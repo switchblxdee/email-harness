@@ -1,0 +1,52 @@
+# Gmail + LangGraph-агент на OpenRouter. Это шаблон — свой адрес сюда не пиши.
+# Личный конфиг: cp examples/gmail.toml config.toml  (config.toml в .gitignore)
+#   export MAIL_PASSWORD='abcd efgh ijkl mnop'   # пароль приложения Google, НЕ обычный пароль
+#   export OPENROUTER_API_KEY='sk-or-...'
+#   python3 -m mail_harness -c examples/gmail.toml check
+
+[imap]
+host = "imap.gmail.com"
+port = 993
+security = "ssl"
+username = "you@gmail.com"          # <- свой адрес
+password_env = "MAIL_PASSWORD"
+mailbox = "INBOX"
+# sent_folder не задаём: Gmail сам кладёт письма, отправленные через SMTP, в «Отправленные»
+
+[smtp]
+host = "smtp.gmail.com"
+port = 465
+security = "ssl"
+from_name = "Егор Иванович"
+
+[safety]
+my_addresses = []                   # сюда алиасы, если есть; you@googlemail.com и т.п.
+max_replies_per_sender_per_hour = 3
+max_replies_per_hour = 30
+
+[harness]
+dry_run = true
+poll_interval = 60
+data_dir = "../data"
+state_db = "../state-gmail.sqlite3" # отдельное состояние для этого ящика
+
+[backlog]
+author_name = "Имя Фамилия"         # автор задач, которые вы создаёте сами (через чат)
+notify_in_progress = true      # письмо автору, когда задачу взяли «В работу» (один раз на задачу)
+notify_delay = 10              # секунд до отправки — чтобы «Отменить» успело отменить и письмо
+# notify_template = "Здравствуйте!\n\n{owner} взял Вашу задачу «{title}» в работу.\n\nСообщение создано автоматически."
+cleanup_done = "archive"       # в 00:00 выполненные: archive — в data/archive/, delete — удалить, off — не трогать
+
+[agent]
+class = "examples.openrouter_agent:MailAgent"
+
+[agent.options]
+owner = "Егор Иванович"
+model = "deepseek/deepseek-v4-flash"   # любая модель с https://openrouter.ai/models
+
+[chat]
+class = "examples.chat_agent:ChatAgent"   # чат с ассистентом в бэклоге (нужен OPENROUTER_API_KEY)
+
+[chat.options]
+owner = "Егор Иванович"
+model = "deepseek/deepseek-v4-flash"

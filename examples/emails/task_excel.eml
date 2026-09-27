@@ -1,0 +1,32 @@
+From: =?utf-8?b?0JjQstCw0L0g0J/QtdGC0YDQvtCy?= <ivan.petrov@example.com>
+To: egor@example.com
+Subject: =?utf-8?b?0KHQstC10YDQutCwINC+0YHRgtCw0YLQutC+0LIg0L/QviDRhNC40Ls=?=
+ =?utf-8?b?0LjQsNC70LDQvA==?=
+Date: Sun, 27 Sep 2026 10:30:00 +0000
+Message-ID: <179046473286.27035.4365935420907610051@corp.ru>
+MIME-Version: 1.0
+Content-Type: multipart/mixed; boundary="===============2445131932494337531=="
+
+--===============2445131932494337531==
+Content-Type: text/plain; charset="utf-8"
+Content-Transfer-Encoding: base64
+
+0JXQs9C+0YAg0JjQstCw0L3QvtCy0LjRhywg0LTQvtCx0YDRi9C5INC00LXQvdGMIQoK0JLQviDQ
+stC70L7QttC10L3QuNC4INCy0YvQs9GA0YPQt9C60LAg0L7RgdGC0LDRgtC60L7QsiDQt9CwINGB
+0LXQvdGC0Y/QsdGA0YwuINCd0YPQttC90L4g0YHQstC10YDQuNGC0Ywg0YEg0LTQsNC90L3Ri9C8
+0Lgg0LjQtyAx0KEg0Lgg0L7RgtC80LXRgtC40YLRjCDRgNCw0YHRhdC+0LbQtNC10L3QuNGPINCx
+0L7Qu9GM0YjQtSA1JS4g0JbQtdC70LDRgtC10LvRjNC90L4g0LTQviDQv9GP0YLQvdC40YbRiywg
+MyDQvtC60YLRj9Cx0YDRjyDigJQg0LIg0L/QvtC90LXQtNC10LvRjNC90LjQuiDQvtGC0YfRkdGC
+INGD0YXQvtC00LjRgiDRgNGD0LrQvtCy0L7QtNGB0YLQstGDLgoK0KHQv9Cw0YHQuNCx0L4hCtCY
+0LLQsNC9Cg==
+
+--===============2445131932494337531==
+Content-Type: application/vnd.openxmlformats-officedocument.spreadsheetml.sheet
+Content-Transfer-Encoding: base64
+Content-Disposition: attachment;
+ filename*=utf-8''%D0%BE%D1%82%D1%87%D1%91%D1%82.xlsx
+MIME-Version: 1.0
+
+UEsDBGZha2U=
+
+--===============2445131932494337531==--

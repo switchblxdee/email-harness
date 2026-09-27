@@ -1,0 +1,4 @@
+langchain-openai>=1.6
+langchain-core>=1.6
+langgraph>=1.2
+pydantic>=2.13

@@ -1,0 +1,25 @@
+# Конфиг для LangGraph-агента на OpenRouter.
+#   export OPENROUTER_API_KEY='sk-or-...'
+#   export MAIL_PASSWORD='...'            # не нужен для команды try
+#   python3 -m mail_harness -c examples/openrouter.toml try examples/emails/task_excel.eml
+
+[imap]
+host = "imap.example.com"
+username = "egor@example.com"
+password_env = "MAIL_PASSWORD"
+
+[smtp]
+host = "smtp.example.com"
+from_name = "Егор Иванович"
+
+[harness]
+dry_run = true
+data_dir = "../data"
+state_db = "../state.sqlite3"
+
+[agent]
+class = "examples.openrouter_agent:MailAgent"
+
+[agent.options]
+owner = "Егор Иванович"
+model = "deepseek/deepseek-v4-flash"   # любая модель с https://openrouter.ai/models
